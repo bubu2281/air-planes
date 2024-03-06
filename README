@@ -1,0 +1,56 @@
+TASK 1:
+    -am declarat cu define mai multe numere pentru a nu avea problema numerelor magice mai important fiind DIM_INFO), acela fiind
+13, adica dimensiunea unui "element" de tip info)
+    -dupa aceea pentru fiecare avion in parte am retinut in mai multe variabile informatii despre acesta, prin preluarea lor din vectorul info
+    -in final, am afisat dupa cum ni se cere informatiile respective
+TASK 2:
+    -am declarat aceleasi define-uri ca la task1
+    -am initialiat matricea cu puncte (' . ') pentru a adauga avioanele sub forma de stelute ulterior
+    -ca la task 1 pentru fiecare avion am retinut informatiile specifice acestuia, pentru a construi avioanele in matrice
+    -cu doua switch-uri, unul pentru tipul avionului, respectiv mare sau mic si unul pentru directie, respectiv N, S, E, W
+am construit avioanele conform tipului, coordonatelor, si directilor acestora, punand in matrice stelute ptr fiecare "pixel"
+din care acesta este construit
+    OBS: am construit avionul strat cu strat incepand de la cap la coada, iar pentru portiunile mai lungi(vezi jos) am folosit for-uri
+pentru a nu incarca codul mai mult decat era deja
+                        *
+                      *****   <----
+                        *
+                       ***    <----
+    -in final, am afisat matricea, clasic
+TASK 3:
+    -in main am apelat functia qsort, in care am pus functia de comparare "compare"
+    -functia compare:
+        -se bazeaza mult pe aritmetica cu pointeri
+        -initial verifica daca typeurile sunt egale, daca sunt egale trece mai departe in comparare daca nu, returneaza diferenta intre acestea
+        -dupa verifica lexicografic codurile aeroporturilor,pe litere, si trece mai departe sau returneaza la fel ca mai sus, doar ca daca codurile coincid, atunci returneaza diferenta dintre viteze
+TASK 4:
+    -mai intai pentru fiecare avion se extrag informatiile ca la task1, doar cele utile, adica linia, coloana, tipul si directia
+    -dupa aceea, cu doua switch-uri unul pentru tip, celalalt pentru directie ferificam daca avionul respectiv va lovi un obstacol astfel:
+        -pentru fiecare obstacol verifica daca coordonatele acestuia se va intersecta la un mom dat cu avionul, adica spre exemplu, daca un
+avion se deplaseaza spre nord, acesta va lovi obstacolele care se afla in fata lui, adica obstacolele care au aceeasi coordonata a coloanei cu coloana unui "pixel" al avionului, si coordonata liniei desupra avionului adica mai mica decat oricare dintre coordonatele "pixelilor" avionului
+        -explicatia de pe randul de mai sus nu este perfecta, dar ca observatie, functia verifica si daca obstacolele se afla intre aripa mica
+si aripa mare a avionului
+        -pentru mai multa claritate am sa incerc sa exemplific mai jos
+
+            *          @      |            *------------@       |                                |
+        * @ *                 |     (*) @  *--------------------|     *--@                       |
+        * * * *               |     (*)(*) *--------------------|     *--------------------------|
+        *   *      @          |     (*)    *--------@           |     *--------------------------|
+            *                 |            *--------------------|                                |
+            matricea initial     verificare mai intai aripa mare    daca ar exista doar obstacolul
+                                 care loveste doua obstacole        dintre aripi, si s-ar efectua doar
+                                                                    prima verificare, atunci nu ar detecta obst
+                                                                    dintre aripi, asa ca verificam si pt aripa mica
+                                                                    sa nu se intersecteze pe drumul ei cu vreun obstacol
+        -analog si pentru avioanele mari, de tip 2
+TASK 5:
+    -pentru fiecare moment de la 0 la T in parte
+    -luam fiecare avion
+    -si il verificam pt fiecare coordonata
+    -cu doua switch-uri, ca la task-urile trecute, ptr fiecare avion verificam daca pe straturi, fiecare pixel al avionului coincide cu vreun
+punct
+    -cand se intampla ca avionul sa se afle la acel moment in vreun punct, se iese din verificare, si se mareste numaratoarea pentru acel moment
+    -daca un anumit avion nu se afla in niciun punct in momentul specific, numatatoare nu creste
+    -in final, afisam momentul si numaratoare specifica fiecarui moment
+    OBS : -pozitia avionului intr-un anumit moment am calculat-o in functie de viteza si moment dupa formula x(t) = x(0) +/- v(t - t0)
+pentru noi devenind x(t) = x(0) +/- v*t , deoarece t0=0 (momentul initial este 0). Analog pentru coordonata y, iar +/- depind de directie
